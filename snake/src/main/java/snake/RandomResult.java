@@ -31,9 +31,9 @@ public final class RandomResult {
             return new RandomResult(value, nextSeed);
         }
     }
-    public RandomResult(int value__72, int nextSeed__73) {
-        this.value = value__72;
-        this.nextSeed = nextSeed__73;
+    public RandomResult(int value__125, int nextSeed__126) {
+        this.value = value__125;
+        this.nextSeed = nextSeed__126;
     }
     public int getValue() {
         return this.value;

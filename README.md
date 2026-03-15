@@ -47,8 +47,8 @@ The same snake game exists in 6 languages, all generated from [one Temper source
 ## Source
 
 - Game source: [notactuallytreyanastasio/temper_snake](https://github.com/notactuallytreyanastasio/temper_snake)
-- Compiler branch: [`do-crimes-to-play-snake`](https://github.com/temperlang/temper/tree/do-crimes-to-play-snake) ([PR #376](https://github.com/temperlang/temper/pull/376))
+- Compiler branch: [`do-more-crimes-to-play-snake-multiplayer`](https://github.com/temperlang/temper/tree/do-more-crimes-to-play-snake-multiplayer)
 
 ---
 
-*Auto-generated from commit [`a39098b041de1619f89cf75b20e1b9365fc7ee3c`](https://github.com/notactuallytreyanastasio/temper_snake/commit/a39098b041de1619f89cf75b20e1b9365fc7ee3c)*
+*Auto-generated from commit [`c8f06c7238f126a9988baa78bfcb5e103626b476`](https://github.com/notactuallytreyanastasio/temper_snake/commit/c8f06c7238f126a9988baa78bfcb5e103626b476)*

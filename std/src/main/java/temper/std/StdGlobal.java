@@ -4,6 +4,7 @@ public class StdGlobal {
     static {
         try {
             Class.forName("temper.std.io.IoGlobal");
+            Class.forName("temper.std.ws.WsGlobal");
             Class.forName("temper.std.testing.TestingGlobal");
             Class.forName("temper.std.json.JsonGlobal");
             Class.forName("temper.std.net.NetGlobal");

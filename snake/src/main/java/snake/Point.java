@@ -31,9 +31,9 @@ public final class Point {
             return new Point(x, y);
         }
     }
-    public Point(int x__57, int y__58) {
-        this.x = x__57;
-        this.y = y__58;
+    public Point(int x__110, int y__111) {
+        this.x = x__110;
+        this.y = y__111;
     }
     public int getX() {
         return this.x;

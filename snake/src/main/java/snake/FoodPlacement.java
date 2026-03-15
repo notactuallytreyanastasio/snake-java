@@ -29,9 +29,9 @@ final class FoodPlacement {
             return new FoodPlacement(point, seed);
         }
     }
-    public FoodPlacement(Point point__101, int seed__102) {
-        this.point = point__101;
-        this.seed = seed__102;
+    public FoodPlacement(Point point__154, int seed__155) {
+        this.point = point__154;
+        this.seed = seed__155;
     }
     public Point getPoint() {
         return this.point;
