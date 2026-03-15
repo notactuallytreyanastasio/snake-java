@@ -9,7 +9,7 @@ A terminal snake game written in [Java] — auto-generated from [Temper](https:/
 ```bash
 git clone https://github.com/notactuallytreyanastasio/snake-java.git
 cd snake-java
-cd snake-game && mvn compile exec:java
+bash run.sh
 ```
 
 Use **w/a/s/d** keys to steer the snake. No Enter key needed — input is raw mode.
@@ -44,4 +44,4 @@ Every push to the source repo triggers a fresh build. This code is always in syn
 
 ---
 
-*Auto-generated from commit [`607863589efbf618cd4d0b2bf09037a93358517f`](https://github.com/notactuallytreyanastasio/temper_snake/commit/607863589efbf618cd4d0b2bf09037a93358517f)*
+*Auto-generated from commit [`d27a2fddc11e33daafd386ab9534e4084cb1d29b`](https://github.com/notactuallytreyanastasio/temper_snake/commit/d27a2fddc11e33daafd386ab9534e4084cb1d29b)*
