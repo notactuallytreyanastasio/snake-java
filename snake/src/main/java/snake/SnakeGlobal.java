@@ -411,7 +411,7 @@ public final class SnakeGlobal {
             sb__149.append("#");
             x__150 = x__150 + 1;
         }
-        sb__149.append("#\n");
+        sb__149.append("#\r\n");
         int y__151 = 0;
         while (true) {
             t_789 = game__147.getHeight();
@@ -429,7 +429,7 @@ public final class SnakeGlobal {
                 sb__149.append(SnakeGlobal.cellChar__43(game__147, p__153));
                 x__152 = x__152 + 1;
             }
-            sb__149.append("#\n");
+            sb__149.append("#\r\n");
             y__151 = y__151 + 1;
         }
         sb__149.append("#");
@@ -442,7 +442,7 @@ public final class SnakeGlobal {
             sb__149.append("#");
             x__154 = x__154 + 1;
         }
-        sb__149.append("#\n");
+        sb__149.append("#\r\n");
         String statusText__155;
         GameStatus t_800 = game__147.getStatus();
         if (t_800 instanceof Playing) {
@@ -452,7 +452,7 @@ public final class SnakeGlobal {
         } else {
             statusText__155 = "";
         }
-        sb__149.append("Score: " + Integer.toString(game__147.getScore()) + "  " + statusText__155 + "\n");
+        sb__149.append("Score: " + Integer.toString(game__147.getScore()) + "  " + statusText__155 + "\r" + "\n");
         return sb__149.toString();
     }
 }
