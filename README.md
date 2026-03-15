@@ -51,4 +51,4 @@ The same snake game exists in 6 languages, all generated from [one Temper source
 
 ---
 
-*Auto-generated from commit [`0344778b5417ec14c5717d2cff2765f03dca4b5a`](https://github.com/notactuallytreyanastasio/temper_snake/commit/0344778b5417ec14c5717d2cff2765f03dca4b5a)*
+*Auto-generated from commit [`a39098b041de1619f89cf75b20e1b9365fc7ee3c`](https://github.com/notactuallytreyanastasio/temper_snake/commit/a39098b041de1619f89cf75b20e1b9365fc7ee3c)*
