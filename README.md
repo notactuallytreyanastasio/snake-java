@@ -44,4 +44,4 @@ Every push to the source repo triggers a fresh build. This code is always in syn
 
 ---
 
-*Auto-generated from commit [`bff649e1d2214c30c55a7535c6db4e039e74a779`](https://github.com/notactuallytreyanastasio/temper_snake/commit/bff649e1d2214c30c55a7535c6db4e039e74a779)*
+*Auto-generated from commit [`8d15eff257d06df8969d197fa1b6d6d36da346ca`](https://github.com/notactuallytreyanastasio/temper_snake/commit/8d15eff257d06df8969d197fa1b6d6d36da346ca)*
