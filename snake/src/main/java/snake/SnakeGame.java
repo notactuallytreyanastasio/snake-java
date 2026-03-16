@@ -90,15 +90,15 @@ public final class SnakeGame {
             return new SnakeGame(width, height, snake, direction, food, score, status, rngSeed);
         }
     }
-    public SnakeGame(int width__143, int height__144, List<Point> snake__145, Direction direction__146, Point food__147, int score__148, GameStatus status__149, int rngSeed__150) {
-        this.width = width__143;
-        this.height = height__144;
-        this.snake = snake__145;
-        this.direction = direction__146;
-        this.food = food__147;
-        this.score = score__148;
-        this.status = status__149;
-        this.rngSeed = rngSeed__150;
+    public SnakeGame(int width__144, int height__145, List<Point> snake__146, Direction direction__147, Point food__148, int score__149, GameStatus status__150, int rngSeed__151) {
+        this.width = width__144;
+        this.height = height__145;
+        this.snake = snake__146;
+        this.direction = direction__147;
+        this.food = food__148;
+        this.score = score__149;
+        this.status = status__150;
+        this.rngSeed = rngSeed__151;
     }
     public int getWidth() {
         return this.width;

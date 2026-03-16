@@ -72,13 +72,13 @@ public final class MultiSnakeGame {
             return new MultiSnakeGame(width, height, snakes, food, rngSeed, tickCount);
         }
     }
-    public MultiSnakeGame(int width__234, int height__235, List<PlayerSnake> snakes__236, Point food__237, int rngSeed__238, int tickCount__239) {
-        this.width = width__234;
-        this.height = height__235;
-        this.snakes = snakes__236;
-        this.food = food__237;
-        this.rngSeed = rngSeed__238;
-        this.tickCount = tickCount__239;
+    public MultiSnakeGame(int width__235, int height__236, List<PlayerSnake> snakes__237, Point food__238, int rngSeed__239, int tickCount__240) {
+        this.width = width__235;
+        this.height = height__236;
+        this.snakes = snakes__237;
+        this.food = food__238;
+        this.rngSeed = rngSeed__239;
+        this.tickCount = tickCount__240;
     }
     public int getWidth() {
         return this.width;

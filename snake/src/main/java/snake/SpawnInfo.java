@@ -17,9 +17,9 @@ final class SpawnInfo {
             return new SpawnInfo(point, direction);
         }
     }
-    public SpawnInfo(Point point__259, Direction direction__260) {
-        this.point = point__259;
-        this.direction = direction__260;
+    public SpawnInfo(Point point__260, Direction direction__261) {
+        this.point = point__260;
+        this.direction = direction__261;
     }
     public Point getPoint() {
         return this.point;

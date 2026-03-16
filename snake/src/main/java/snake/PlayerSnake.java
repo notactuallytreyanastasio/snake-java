@@ -59,12 +59,12 @@ public final class PlayerSnake {
             return new PlayerSnake(id, segments, direction, score, status);
         }
     }
-    public PlayerSnake(int id__222, List<Point> segments__223, Direction direction__224, int score__225, PlayerStatus status__226) {
-        this.id = id__222;
-        this.segments = segments__223;
-        this.direction = direction__224;
-        this.score = score__225;
-        this.status = status__226;
+    public PlayerSnake(int id__223, List<Point> segments__224, Direction direction__225, int score__226, PlayerStatus status__227) {
+        this.id = id__223;
+        this.segments = segments__224;
+        this.direction = direction__225;
+        this.score = score__226;
+        this.status = status__227;
     }
     public int getId() {
         return this.id;

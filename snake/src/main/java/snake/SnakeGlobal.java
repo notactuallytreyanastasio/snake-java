@@ -7,1215 +7,1202 @@ import temper.core.Nullable;
 public final class SnakeGlobal {
     private SnakeGlobal() {
     }
-    public static Direction move(Point head__97, List<Point> body__98, Point food__99, int width__100, int height__101) {
+    public static Direction move(Point head__98, List<Point> body__99, Point food__100, int width__101, int height__102) {
         return new Right();
     }
-    public static boolean pointEquals(Point a__114, Point b__115) {
-        boolean return__49;
-        int t_2788;
-        int t_2789;
-        if (a__114.getX() == b__115.getX()) {
-            t_2788 = a__114.getY();
-            t_2789 = b__115.getY();
-            return__49 = t_2788 == t_2789;
-        } else {
-            return__49 = false;
-        }
-        return return__49;
-    }
-    public static boolean isOpposite(Direction a__117, Direction b__118) {
+    public static boolean pointEquals(Point a__115, Point b__116) {
         boolean return__50;
-        if (a__117 instanceof Up) {
-            return__50 = b__118 instanceof Down;
-        } else if (a__117 instanceof Down) {
-            return__50 = b__118 instanceof Up;
-        } else if (a__117 instanceof Left) {
-            return__50 = b__118 instanceof Right;
-        } else if (a__117 instanceof Right) {
-            return__50 = b__118 instanceof Left;
+        int t_2803;
+        int t_2804;
+        if (a__115.getX() == b__116.getX()) {
+            t_2803 = a__115.getY();
+            t_2804 = b__116.getY();
+            return__50 = t_2803 == t_2804;
         } else {
             return__50 = false;
         }
         return return__50;
     }
-    public static Point directionDelta(Direction dir__120) {
-        Point return__51;
-        if (dir__120 instanceof Up) {
-            return__51 = new Point(0, -1);
-        } else if (dir__120 instanceof Down) {
-            return__51 = new Point(0, 1);
-        } else if (dir__120 instanceof Left) {
-            return__51 = new Point(-1, 0);
-        } else if (dir__120 instanceof Right) {
-            return__51 = new Point(1, 0);
+    public static boolean isOpposite(Direction a__118, Direction b__119) {
+        boolean return__51;
+        if (a__118 instanceof Up) {
+            return__51 = b__119 instanceof Down;
+        } else if (a__118 instanceof Down) {
+            return__51 = b__119 instanceof Up;
+        } else if (a__118 instanceof Left) {
+            return__51 = b__119 instanceof Right;
+        } else if (a__118 instanceof Right) {
+            return__51 = b__119 instanceof Left;
         } else {
-            return__51 = new Point(0, 0);
+            return__51 = false;
         }
         return return__51;
     }
-    public static RandomResult nextRandom(int seed__127, int max__128) {
-        int t_1684;
-        int t_1686;
-        int raw__130 = seed__127 * 1664525 + 1013904223;
-        int masked__131 = raw__130 & 2147483647;
-        int posVal__132;
-        if (masked__131 < 0) {
-            posVal__132 = -masked__131;
+    public static Point directionDelta(Direction dir__121) {
+        Point return__52;
+        if (dir__121 instanceof Up) {
+            return__52 = new Point(0, -1);
+        } else if (dir__121 instanceof Down) {
+            return__52 = new Point(0, 1);
+        } else if (dir__121 instanceof Left) {
+            return__52 = new Point(-1, 0);
+        } else if (dir__121 instanceof Right) {
+            return__52 = new Point(1, 0);
         } else {
-            posVal__132 = masked__131;
+            return__52 = new Point(0, 0);
         }
-        int value__133 = 0;
-        if (max__128 > 0) {
-            try {
-                t_1684 = Core.modIntInt(posVal__132, max__128);
-                t_1686 = t_1684;
-            } catch (RuntimeException ignored$1) {
-                t_1686 = 0;
-            }
-            value__133 = t_1686;
-        }
-        return new RandomResult(value__133, masked__131);
+        return return__52;
     }
-    static FoodPlacement placeFood__92(List<Point> snake__156, int width__157, int height__158, int seed__159) {
-        FoodPlacement return__60;
-        int t_2755;
-        Point t_2766;
-        int t_1649;
-        int t_1651;
-        int t_1653;
-        int t_1655;
-        fn__160: {
-            int totalCells__161 = width__157 * height__158;
-            int currentSeed__162 = seed__159;
-            int attempt__163 = 0;
-            while (attempt__163 < totalCells__161) {
-                RandomResult result__164 = SnakeGlobal.nextRandom(currentSeed__162, totalCells__161);
-                t_2755 = result__164.getNextSeed();
-                currentSeed__162 = t_2755;
-                int px__165 = 0;
-                int py__166 = 0;
-                if (width__157 > 0) {
+    public static RandomResult nextRandom(int seed__128, int max__129) {
+        int t_1687;
+        int t_1689;
+        int raw__131 = seed__128 * 1664525 + 1013904223;
+        int masked__132 = raw__131 & 2147483647;
+        int posVal__133;
+        if (masked__132 < 0) {
+            posVal__133 = -masked__132;
+        } else {
+            posVal__133 = masked__132;
+        }
+        int value__134 = 0;
+        if (max__129 > 0) {
+            try {
+                t_1687 = Core.modIntInt(posVal__133, max__129);
+                t_1689 = t_1687;
+            } catch (RuntimeException ignored$1) {
+                t_1689 = 0;
+            }
+            value__134 = t_1689;
+        }
+        return new RandomResult(value__134, masked__132);
+    }
+    static FoodPlacement placeFood__93(List<Point> snake__157, int width__158, int height__159, int seed__160) {
+        FoodPlacement return__61;
+        int t_2770;
+        Point t_2781;
+        int t_1652;
+        int t_1654;
+        int t_1656;
+        int t_1658;
+        fn__161: {
+            int totalCells__162 = width__158 * height__159;
+            int currentSeed__163 = seed__160;
+            int attempt__164 = 0;
+            while (attempt__164 < totalCells__162) {
+                RandomResult result__165 = SnakeGlobal.nextRandom(currentSeed__163, totalCells__162);
+                t_2770 = result__165.getNextSeed();
+                currentSeed__163 = t_2770;
+                int px__166 = 0;
+                int py__167 = 0;
+                if (width__158 > 0) {
                     try {
-                        t_1649 = Core.modIntInt(result__164.getValue(), width__157);
-                        t_1651 = t_1649;
+                        t_1652 = Core.modIntInt(result__165.getValue(), width__158);
+                        t_1654 = t_1652;
                     } catch (RuntimeException ignored$2) {
-                        t_1651 = 0;
+                        t_1654 = 0;
                     }
-                    px__165 = t_1651;
+                    px__166 = t_1654;
                     try {
-                        t_1653 = Core.divIntInt(result__164.getValue(), width__157);
-                        t_1655 = t_1653;
+                        t_1656 = Core.divIntInt(result__165.getValue(), width__158);
+                        t_1658 = t_1656;
                     } catch (RuntimeException ignored$3) {
-                        t_1655 = 0;
+                        t_1658 = 0;
                     }
-                    py__166 = t_1655;
+                    py__167 = t_1658;
                 }
-                Point candidate__167 = new Point(px__165, py__166);
+                Point candidate__168 = new Point(px__166, py__167);
                 class Local_1 {
-                    boolean occupied__168 = false;
+                    boolean occupied__169 = false;
                 }
                 final Local_1 local$1 = new Local_1();
-                Consumer<Point> fn__2754 = seg__169 -> {
-                    if (SnakeGlobal.pointEquals(seg__169, candidate__167)) {
-                        local$1.occupied__168 = true;
+                Consumer<Point> fn__2769 = seg__170 -> {
+                    if (SnakeGlobal.pointEquals(seg__170, candidate__168)) {
+                        local$1.occupied__169 = true;
                     }
                 };
-                snake__156.forEach(fn__2754);
-                if (!local$1.occupied__168) {
-                    return__60 = new FoodPlacement(candidate__167, currentSeed__162);
-                    break fn__160;
+                snake__157.forEach(fn__2769);
+                if (!local$1.occupied__169) {
+                    return__61 = new FoodPlacement(candidate__168, currentSeed__163);
+                    break fn__161;
                 }
-                attempt__163 = attempt__163 + 1;
+                attempt__164 = attempt__164 + 1;
             }
-            int y__170 = 0;
-            while (y__170 < height__158) {
-                int x__171 = 0;
-                while (x__171 < width__157) {
-                    Point candidate__172 = new Point(x__171, y__170);
+            int y__171 = 0;
+            while (y__171 < height__159) {
+                int x__172 = 0;
+                while (x__172 < width__158) {
+                    Point candidate__173 = new Point(x__172, y__171);
                     class Local_2 {
-                        boolean free__173 = true;
+                        boolean free__174 = true;
                     }
                     final Local_2 local$2 = new Local_2();
-                    Consumer<Point> fn__2753 = seg__174 -> {
-                        if (SnakeGlobal.pointEquals(seg__174, candidate__172)) {
-                            local$2.free__173 = false;
+                    Consumer<Point> fn__2768 = seg__175 -> {
+                        if (SnakeGlobal.pointEquals(seg__175, candidate__173)) {
+                            local$2.free__174 = false;
                         }
                     };
-                    snake__156.forEach(fn__2753);
-                    if (local$2.free__173) {
-                        return__60 = new FoodPlacement(candidate__172, currentSeed__162);
-                        break fn__160;
+                    snake__157.forEach(fn__2768);
+                    if (local$2.free__174) {
+                        return__61 = new FoodPlacement(candidate__173, currentSeed__163);
+                        break fn__161;
                     }
-                    x__171 = x__171 + 1;
+                    x__172 = x__172 + 1;
                 }
-                y__170 = y__170 + 1;
+                y__171 = y__171 + 1;
             }
-            t_2766 = new Point(0, 0);
-            return__60 = new FoodPlacement(t_2766, currentSeed__162);
+            t_2781 = new Point(0, 0);
+            return__61 = new FoodPlacement(t_2781, currentSeed__163);
         }
-        return return__60;
+        return return__61;
     }
-    public static SnakeGame newGame(int width__175, int height__176, int seed__177) {
-        int t_1632;
-        int t_1634;
+    public static SnakeGame newGame(int width__176, int height__177, int seed__178) {
         int t_1635;
         int t_1637;
-        int centerX__179 = 0;
-        int centerY__180 = 0;
-        if (width__175 > 0) {
-            t_1632 = width__175 / 2;
-            t_1634 = t_1632;
-            centerX__179 = t_1634;
-        }
-        if (height__176 > 0) {
-            t_1635 = height__176 / 2;
+        int t_1638;
+        int t_1640;
+        int centerX__180 = 0;
+        int centerY__181 = 0;
+        if (width__176 > 0) {
+            t_1635 = width__176 / 2;
             t_1637 = t_1635;
-            centerY__180 = t_1637;
+            centerX__180 = t_1637;
         }
-        List<Point> snake__181 = List.of(new Point(centerX__179, centerY__180), new Point(centerX__179 - 1, centerY__180), new Point(centerX__179 - 2, centerY__180));
-        FoodPlacement foodResult__182 = SnakeGlobal.placeFood__92(snake__181, width__175, height__176, seed__177);
-        Right t_2748 = new Right();
-        Point t_2749 = foodResult__182.getPoint();
-        Playing t_2750 = new Playing();
-        int t_2751 = foodResult__182.getSeed();
-        return new SnakeGame(width__175, height__176, snake__181, t_2748, t_2749, 0, t_2750, t_2751);
-    }
-    public static SnakeGame changeDirection(SnakeGame game__183, Direction dir__184) {
-        SnakeGame return__62;
-        int t_2736;
-        int t_2737;
-        List<Point> t_2738;
-        Point t_2739;
-        int t_2740;
-        GameStatus t_2741;
-        int t_2742;
-        if (SnakeGlobal.isOpposite(game__183.getDirection(), dir__184)) {
-            return__62 = game__183;
-        } else {
-            t_2736 = game__183.getWidth();
-            t_2737 = game__183.getHeight();
-            t_2738 = game__183.getSnake();
-            t_2739 = game__183.getFood();
-            t_2740 = game__183.getScore();
-            t_2741 = game__183.getStatus();
-            t_2742 = game__183.getRngSeed();
-            return__62 = new SnakeGame(t_2736, t_2737, t_2738, dir__184, t_2739, t_2740, t_2741, t_2742);
+        if (height__177 > 0) {
+            t_1638 = height__177 / 2;
+            t_1640 = t_1638;
+            centerY__181 = t_1640;
         }
-        return return__62;
+        List<Point> snake__182 = List.of(new Point(centerX__180, centerY__181), new Point(centerX__180 - 1, centerY__181), new Point(centerX__180 - 2, centerY__181));
+        FoodPlacement foodResult__183 = SnakeGlobal.placeFood__93(snake__182, width__176, height__177, seed__178);
+        Right t_2763 = new Right();
+        Point t_2764 = foodResult__183.getPoint();
+        Playing t_2765 = new Playing();
+        int t_2766 = foodResult__183.getSeed();
+        return new SnakeGame(width__176, height__177, snake__182, t_2763, t_2764, 0, t_2765, t_2766);
     }
-    public static SnakeGame tick(SnakeGame game__186) {
+    public static SnakeGame changeDirection(SnakeGame game__184, Direction dir__185) {
         SnakeGame return__63;
-        int t_2676;
-        int t_2677;
-        int t_2678;
-        int t_2679;
-        List<Point> t_2680;
-        Direction t_2681;
-        Point t_2682;
-        int t_2683;
-        GameOver t_2684;
-        int t_2685;
-        int t_2689;
-        int t_2691;
-        List<Point> t_2692;
-        Point t_2693;
-        int t_2695;
-        int t_2696;
-        List<Point> t_2697;
-        Direction t_2698;
-        Point t_2699;
-        int t_2700;
-        GameOver t_2701;
-        int t_2702;
-        int t_2707;
-        int t_2709;
-        List<Point> t_2710;
-        Point t_2711;
-        int t_2716;
-        int t_2717;
-        int t_2718;
-        int t_2720;
-        int t_2721;
-        Direction t_2722;
-        Point t_2723;
-        Playing t_2724;
-        int t_2725;
-        int t_2727;
-        int t_2728;
-        Direction t_2729;
-        Point t_2730;
-        int t_2731;
-        GameStatus t_2732;
-        int t_2733;
-        boolean t_1559;
-        boolean t_1560;
-        boolean t_1561;
-        fn__187: {
-            if (game__186.getStatus() instanceof GameOver) {
-                return__63 = game__186;
-                break fn__187;
-            }
-            Point delta__188 = SnakeGlobal.directionDelta(game__186.getDirection());
-            Point head__189 = Core.listGetOr(game__186.getSnake(), 0, new Point(0, 0));
-            Point newHead__190 = new Point(head__189.getX() + delta__188.getX(), head__189.getY() + delta__188.getY());
-            if (newHead__190.getX() < 0) {
-                t_1561 = true;
-            } else {
-                if (newHead__190.getX() >= game__186.getWidth()) {
-                    t_1560 = true;
-                } else {
-                    if (newHead__190.getY() < 0) {
-                        t_1559 = true;
-                    } else {
-                        t_2676 = newHead__190.getY();
-                        t_2677 = game__186.getHeight();
-                        t_1559 = t_2676 >= t_2677;
-                    }
-                    t_1560 = t_1559;
-                }
-                t_1561 = t_1560;
-            }
-            if (t_1561) {
-                t_2678 = game__186.getWidth();
-                t_2679 = game__186.getHeight();
-                t_2680 = game__186.getSnake();
-                t_2681 = game__186.getDirection();
-                t_2682 = game__186.getFood();
-                t_2683 = game__186.getScore();
-                t_2684 = new GameOver();
-                t_2685 = game__186.getRngSeed();
-                return__63 = new SnakeGame(t_2678, t_2679, t_2680, t_2681, t_2682, t_2683, t_2684, t_2685);
-                break fn__187;
-            }
-            boolean eating__191 = SnakeGlobal.pointEquals(newHead__190, game__186.getFood());
-            int checkLength__192;
-            if (eating__191) {
-                t_2689 = game__186.getSnake().size();
-                checkLength__192 = t_2689;
-            } else {
-                t_2691 = game__186.getSnake().size();
-                checkLength__192 = t_2691 - 1;
-            }
-            int i__193 = 0;
-            while (i__193 < checkLength__192) {
-                t_2692 = game__186.getSnake();
-                t_2693 = new Point(-1, -1);
-                if (SnakeGlobal.pointEquals(newHead__190, Core.listGetOr(t_2692, i__193, t_2693))) {
-                    t_2695 = game__186.getWidth();
-                    t_2696 = game__186.getHeight();
-                    t_2697 = game__186.getSnake();
-                    t_2698 = game__186.getDirection();
-                    t_2699 = game__186.getFood();
-                    t_2700 = game__186.getScore();
-                    t_2701 = new GameOver();
-                    t_2702 = game__186.getRngSeed();
-                    return__63 = new SnakeGame(t_2695, t_2696, t_2697, t_2698, t_2699, t_2700, t_2701, t_2702);
-                    break fn__187;
-                }
-                i__193 = i__193 + 1;
-            }
-            List<Point> newSnakeBuilder__194 = new ArrayList<>();
-            Core.listAdd(newSnakeBuilder__194, newHead__190);
-            int keepLength__195;
-            if (eating__191) {
-                t_2707 = game__186.getSnake().size();
-                keepLength__195 = t_2707;
-            } else {
-                t_2709 = game__186.getSnake().size();
-                keepLength__195 = t_2709 - 1;
-            }
-            int i__196 = 0;
-            while (i__196 < keepLength__195) {
-                t_2710 = game__186.getSnake();
-                t_2711 = new Point(0, 0);
-                Core.listAdd(newSnakeBuilder__194, Core.listGetOr(t_2710, i__196, t_2711));
-                i__196 = i__196 + 1;
-            }
-            List<Point> newSnake__197 = List.copyOf(newSnakeBuilder__194);
-            if (eating__191) {
-                int newScore__198 = game__186.getScore() + 1;
-                t_2716 = game__186.getWidth();
-                t_2717 = game__186.getHeight();
-                t_2718 = game__186.getRngSeed();
-                FoodPlacement foodResult__199 = SnakeGlobal.placeFood__92(newSnake__197, t_2716, t_2717, t_2718);
-                t_2720 = game__186.getWidth();
-                t_2721 = game__186.getHeight();
-                t_2722 = game__186.getDirection();
-                t_2723 = foodResult__199.getPoint();
-                t_2724 = new Playing();
-                t_2725 = foodResult__199.getSeed();
-                return__63 = new SnakeGame(t_2720, t_2721, newSnake__197, t_2722, t_2723, newScore__198, t_2724, t_2725);
-            } else {
-                t_2727 = game__186.getWidth();
-                t_2728 = game__186.getHeight();
-                t_2729 = game__186.getDirection();
-                t_2730 = game__186.getFood();
-                t_2731 = game__186.getScore();
-                t_2732 = game__186.getStatus();
-                t_2733 = game__186.getRngSeed();
-                return__63 = new SnakeGame(t_2727, t_2728, newSnake__197, t_2729, t_2730, t_2731, t_2732, t_2733);
-            }
+        int t_2751;
+        int t_2752;
+        List<Point> t_2753;
+        Point t_2754;
+        int t_2755;
+        GameStatus t_2756;
+        int t_2757;
+        if (SnakeGlobal.isOpposite(game__184.getDirection(), dir__185)) {
+            return__63 = game__184;
+        } else {
+            t_2751 = game__184.getWidth();
+            t_2752 = game__184.getHeight();
+            t_2753 = game__184.getSnake();
+            t_2754 = game__184.getFood();
+            t_2755 = game__184.getScore();
+            t_2756 = game__184.getStatus();
+            t_2757 = game__184.getRngSeed();
+            return__63 = new SnakeGame(t_2751, t_2752, t_2753, dir__185, t_2754, t_2755, t_2756, t_2757);
         }
         return return__63;
     }
-    static String cellChar__93(SnakeGame game__209, Point p__210) {
-        String return__65;
-        int t_2655;
-        List<Point> t_2656;
-        Point t_2657;
-        Point t_2658;
-        Point t_2659;
-        fn__211: {
-            Point head__212 = Core.listGetOr(game__209.getSnake(), 0, new Point(-1, -1));
-            if (SnakeGlobal.pointEquals(p__210, head__212)) {
-                return__65 = "@";
-                break fn__211;
+    public static SnakeGame tick(SnakeGame game__187) {
+        SnakeGame return__64;
+        int t_2691;
+        int t_2692;
+        int t_2693;
+        int t_2694;
+        List<Point> t_2695;
+        Direction t_2696;
+        Point t_2697;
+        int t_2698;
+        GameOver t_2699;
+        int t_2700;
+        int t_2704;
+        int t_2706;
+        List<Point> t_2707;
+        Point t_2708;
+        int t_2710;
+        int t_2711;
+        List<Point> t_2712;
+        Direction t_2713;
+        Point t_2714;
+        int t_2715;
+        GameOver t_2716;
+        int t_2717;
+        int t_2722;
+        int t_2724;
+        List<Point> t_2725;
+        Point t_2726;
+        int t_2731;
+        int t_2732;
+        int t_2733;
+        int t_2735;
+        int t_2736;
+        Direction t_2737;
+        Point t_2738;
+        Playing t_2739;
+        int t_2740;
+        int t_2742;
+        int t_2743;
+        Direction t_2744;
+        Point t_2745;
+        int t_2746;
+        GameStatus t_2747;
+        int t_2748;
+        boolean t_1562;
+        boolean t_1563;
+        boolean t_1564;
+        fn__188: {
+            if (game__187.getStatus() instanceof GameOver) {
+                return__64 = game__187;
+                break fn__188;
             }
-            int i__213 = 1;
-            while (true) {
-                t_2655 = game__209.getSnake().size();
-                if (i__213 >= t_2655) {
-                    break;
+            Point delta__189 = SnakeGlobal.directionDelta(game__187.getDirection());
+            Point head__190 = Core.listGetOr(game__187.getSnake(), 0, new Point(0, 0));
+            Point newHead__191 = new Point(head__190.getX() + delta__189.getX(), head__190.getY() + delta__189.getY());
+            if (newHead__191.getX() < 0) {
+                t_1564 = true;
+            } else {
+                if (newHead__191.getX() >= game__187.getWidth()) {
+                    t_1563 = true;
+                } else {
+                    if (newHead__191.getY() < 0) {
+                        t_1562 = true;
+                    } else {
+                        t_2691 = newHead__191.getY();
+                        t_2692 = game__187.getHeight();
+                        t_1562 = t_2691 >= t_2692;
+                    }
+                    t_1563 = t_1562;
                 }
-                t_2656 = game__209.getSnake();
-                t_2657 = new Point(-1, -1);
-                t_2658 = Core.listGetOr(t_2656, i__213, t_2657);
-                if (SnakeGlobal.pointEquals(p__210, t_2658)) {
-                    return__65 = "o";
-                    break fn__211;
+                t_1564 = t_1563;
+            }
+            if (t_1564) {
+                t_2693 = game__187.getWidth();
+                t_2694 = game__187.getHeight();
+                t_2695 = game__187.getSnake();
+                t_2696 = game__187.getDirection();
+                t_2697 = game__187.getFood();
+                t_2698 = game__187.getScore();
+                t_2699 = new GameOver();
+                t_2700 = game__187.getRngSeed();
+                return__64 = new SnakeGame(t_2693, t_2694, t_2695, t_2696, t_2697, t_2698, t_2699, t_2700);
+                break fn__188;
+            }
+            boolean eating__192 = SnakeGlobal.pointEquals(newHead__191, game__187.getFood());
+            int checkLength__193;
+            if (eating__192) {
+                t_2704 = game__187.getSnake().size();
+                checkLength__193 = t_2704;
+            } else {
+                t_2706 = game__187.getSnake().size();
+                checkLength__193 = t_2706 - 1;
+            }
+            int i__194 = 0;
+            while (i__194 < checkLength__193) {
+                t_2707 = game__187.getSnake();
+                t_2708 = new Point(-1, -1);
+                if (SnakeGlobal.pointEquals(newHead__191, Core.listGetOr(t_2707, i__194, t_2708))) {
+                    t_2710 = game__187.getWidth();
+                    t_2711 = game__187.getHeight();
+                    t_2712 = game__187.getSnake();
+                    t_2713 = game__187.getDirection();
+                    t_2714 = game__187.getFood();
+                    t_2715 = game__187.getScore();
+                    t_2716 = new GameOver();
+                    t_2717 = game__187.getRngSeed();
+                    return__64 = new SnakeGame(t_2710, t_2711, t_2712, t_2713, t_2714, t_2715, t_2716, t_2717);
+                    break fn__188;
                 }
-                i__213 = i__213 + 1;
+                i__194 = i__194 + 1;
             }
-            t_2659 = game__209.getFood();
-            if (SnakeGlobal.pointEquals(p__210, t_2659)) {
-                return__65 = "*";
-                break fn__211;
+            List<Point> newSnakeBuilder__195 = new ArrayList<>();
+            Core.listAdd(newSnakeBuilder__195, newHead__191);
+            int keepLength__196;
+            if (eating__192) {
+                t_2722 = game__187.getSnake().size();
+                keepLength__196 = t_2722;
+            } else {
+                t_2724 = game__187.getSnake().size();
+                keepLength__196 = t_2724 - 1;
             }
-            return__65 = " ";
+            int i__197 = 0;
+            while (i__197 < keepLength__196) {
+                t_2725 = game__187.getSnake();
+                t_2726 = new Point(0, 0);
+                Core.listAdd(newSnakeBuilder__195, Core.listGetOr(t_2725, i__197, t_2726));
+                i__197 = i__197 + 1;
+            }
+            List<Point> newSnake__198 = List.copyOf(newSnakeBuilder__195);
+            if (eating__192) {
+                int newScore__199 = game__187.getScore() + 1;
+                t_2731 = game__187.getWidth();
+                t_2732 = game__187.getHeight();
+                t_2733 = game__187.getRngSeed();
+                FoodPlacement foodResult__200 = SnakeGlobal.placeFood__93(newSnake__198, t_2731, t_2732, t_2733);
+                t_2735 = game__187.getWidth();
+                t_2736 = game__187.getHeight();
+                t_2737 = game__187.getDirection();
+                t_2738 = foodResult__200.getPoint();
+                t_2739 = new Playing();
+                t_2740 = foodResult__200.getSeed();
+                return__64 = new SnakeGame(t_2735, t_2736, newSnake__198, t_2737, t_2738, newScore__199, t_2739, t_2740);
+            } else {
+                t_2742 = game__187.getWidth();
+                t_2743 = game__187.getHeight();
+                t_2744 = game__187.getDirection();
+                t_2745 = game__187.getFood();
+                t_2746 = game__187.getScore();
+                t_2747 = game__187.getStatus();
+                t_2748 = game__187.getRngSeed();
+                return__64 = new SnakeGame(t_2742, t_2743, newSnake__198, t_2744, t_2745, t_2746, t_2747, t_2748);
+            }
         }
-        return return__65;
+        return return__64;
     }
-    public static String render(SnakeGame game__200) {
-        int t_2630;
-        int t_2633;
-        int t_2635;
-        int t_2641;
-        StringBuilder sb__202 = new StringBuilder();
-        sb__202.append("\u001b[2J\u001b[H");
-        sb__202.append("#");
-        int x__203 = 0;
-        while (true) {
-            t_2630 = game__200.getWidth();
-            if (x__203 >= t_2630) {
-                break;
+    static String cellChar__94(SnakeGame game__210, Point p__211) {
+        String return__66;
+        int t_2670;
+        List<Point> t_2671;
+        Point t_2672;
+        Point t_2673;
+        Point t_2674;
+        fn__212: {
+            Point head__213 = Core.listGetOr(game__210.getSnake(), 0, new Point(-1, -1));
+            if (SnakeGlobal.pointEquals(p__211, head__213)) {
+                return__66 = "@";
+                break fn__212;
             }
-            sb__202.append("#");
-            x__203 = x__203 + 1;
-        }
-        sb__202.append("#\r\n");
-        int y__204 = 0;
-        while (true) {
-            t_2633 = game__200.getHeight();
-            if (y__204 >= t_2633) {
-                break;
-            }
-            sb__202.append("#");
-            int x__205 = 0;
+            int i__214 = 1;
             while (true) {
-                t_2635 = game__200.getWidth();
-                if (x__205 >= t_2635) {
+                t_2670 = game__210.getSnake().size();
+                if (i__214 >= t_2670) {
                     break;
                 }
-                Point p__206 = new Point(x__205, y__204);
-                sb__202.append(SnakeGlobal.cellChar__93(game__200, p__206));
-                x__205 = x__205 + 1;
+                t_2671 = game__210.getSnake();
+                t_2672 = new Point(-1, -1);
+                t_2673 = Core.listGetOr(t_2671, i__214, t_2672);
+                if (SnakeGlobal.pointEquals(p__211, t_2673)) {
+                    return__66 = "o";
+                    break fn__212;
+                }
+                i__214 = i__214 + 1;
             }
-            sb__202.append("#\r\n");
-            y__204 = y__204 + 1;
+            t_2674 = game__210.getFood();
+            if (SnakeGlobal.pointEquals(p__211, t_2674)) {
+                return__66 = "*";
+                break fn__212;
+            }
+            return__66 = " ";
         }
-        sb__202.append("#");
-        int x__207 = 0;
+        return return__66;
+    }
+    public static String render(SnakeGame game__201) {
+        int t_2645;
+        int t_2648;
+        int t_2650;
+        int t_2656;
+        StringBuilder sb__203 = new StringBuilder();
+        sb__203.append("\u001b[2J\u001b[H");
+        sb__203.append("#");
+        int x__204 = 0;
         while (true) {
-            t_2641 = game__200.getWidth();
-            if (x__207 >= t_2641) {
+            t_2645 = game__201.getWidth();
+            if (x__204 >= t_2645) {
                 break;
             }
-            sb__202.append("#");
-            x__207 = x__207 + 1;
+            sb__203.append("#");
+            x__204 = x__204 + 1;
         }
-        sb__202.append("#\r\n");
-        String statusText__208;
-        GameStatus t_2644 = game__200.getStatus();
-        if (t_2644 instanceof Playing) {
-            statusText__208 = "Playing";
-        } else if (t_2644 instanceof GameOver) {
-            statusText__208 = "GAME OVER";
+        sb__203.append("#\r\n");
+        int y__205 = 0;
+        while (true) {
+            t_2648 = game__201.getHeight();
+            if (y__205 >= t_2648) {
+                break;
+            }
+            sb__203.append("#");
+            int x__206 = 0;
+            while (true) {
+                t_2650 = game__201.getWidth();
+                if (x__206 >= t_2650) {
+                    break;
+                }
+                Point p__207 = new Point(x__206, y__205);
+                sb__203.append(SnakeGlobal.cellChar__94(game__201, p__207));
+                x__206 = x__206 + 1;
+            }
+            sb__203.append("#\r\n");
+            y__205 = y__205 + 1;
+        }
+        sb__203.append("#");
+        int x__208 = 0;
+        while (true) {
+            t_2656 = game__201.getWidth();
+            if (x__208 >= t_2656) {
+                break;
+            }
+            sb__203.append("#");
+            x__208 = x__208 + 1;
+        }
+        sb__203.append("#\r\n");
+        String statusText__209;
+        GameStatus t_2659 = game__201.getStatus();
+        if (t_2659 instanceof Playing) {
+            statusText__209 = "Playing";
+        } else if (t_2659 instanceof GameOver) {
+            statusText__209 = "GAME OVER";
         } else {
-            statusText__208 = "";
+            statusText__209 = "";
         }
-        sb__202.append("Score: " + Integer.toString(game__200.getScore()) + "  " + statusText__208 + "\r" + "\n");
-        return sb__202.toString();
+        sb__203.append("Score: " + Integer.toString(game__201.getScore()) + "  " + statusText__209 + "\r" + "\n");
+        return sb__203.toString();
     }
-    static SpawnInfo spawnPosition__94(int width__261, int height__262, int index__263, int total__264) {
-        SpawnInfo return__79;
-        Point t_2615;
-        Right t_2616;
-        Point t_2618;
-        Left t_2619;
-        Point t_2621;
-        Down t_2622;
+    static SpawnInfo spawnPosition__95(int width__262, int height__263, int index__264, int seed__265) {
+        SpawnInfo return__80;
         Point t_2624;
-        Up t_2625;
-        int t_1458;
-        int t_1460;
-        int t_1461;
-        int t_1463;
+        Right t_2625;
+        Direction t_2631;
+        Direction t_2633;
+        Direction t_2635;
+        Direction t_2637;
+        Direction t_2639;
+        Point t_2640;
+        boolean t_1463;
         int t_1464;
         int t_1466;
         int t_1467;
         int t_1469;
-        int t_1470;
-        int t_1472;
-        fn__265: {
-            int cx__266 = 0;
-            int cy__267 = 0;
-            if (width__261 > 0) {
-                t_1458 = width__261 / 2;
-                t_1460 = t_1458;
-                cx__266 = t_1460;
+        fn__266: {
+            int buf__267 = 5;
+            int safeW__268 = width__262 - 10;
+            int safeH__269 = height__263 - 10;
+            if (safeW__268 < 1) {
+                t_1463 = true;
+            } else {
+                t_1463 = safeH__269 < 1;
             }
-            if (height__262 > 0) {
-                t_1461 = height__262 / 2;
-                t_1463 = t_1461;
-                cy__267 = t_1463;
-            }
-            int qx__268 = 0;
-            int qy__269 = 0;
-            if (width__261 > 0) {
-                t_1464 = width__261 / 4;
+            if (t_1463) {
+                t_1464 = width__262 / 2;
                 t_1466 = t_1464;
-                qx__268 = t_1466;
-            }
-            if (height__262 > 0) {
-                t_1467 = height__262 / 4;
+                t_1467 = height__263 / 2;
                 t_1469 = t_1467;
-                qy__269 = t_1469;
+                t_2624 = new Point(t_1466, t_1469);
+                t_2625 = new Right();
+                return__80 = new SpawnInfo(t_2624, t_2625);
+                break fn__266;
             }
-            int slot__270 = 0;
-            if (total__264 > 0) {
-                t_1470 = index__263 % 4;
-                t_1472 = t_1470;
-                slot__270 = t_1472;
+            RandomResult r1__270 = SnakeGlobal.nextRandom(seed__265 * 7 + index__264 * 131 + 37, safeW__268);
+            RandomResult r2__271 = SnakeGlobal.nextRandom(r1__270.getNextSeed(), safeH__269);
+            int x__272 = 5 + r1__270.getValue();
+            int y__273 = 5 + r2__271.getValue();
+            RandomResult r3__274 = SnakeGlobal.nextRandom(r2__271.getNextSeed(), 4);
+            t_2631 = new Right();
+            Direction dir__275 = t_2631;
+            if (r3__274.getValue() == 0) {
+                t_2633 = new Right();
+                dir__275 = t_2633;
             }
-            if (slot__270 == 0) {
-                t_2615 = new Point(qx__268, cy__267);
-                t_2616 = new Right();
-                return__79 = new SpawnInfo(t_2615, t_2616);
-                break fn__265;
+            if (r3__274.getValue() == 1) {
+                t_2635 = new Left();
+                dir__275 = t_2635;
             }
-            if (slot__270 == 1) {
-                t_2618 = new Point(width__261 - qx__268 - 1, cy__267);
-                t_2619 = new Left();
-                return__79 = new SpawnInfo(t_2618, t_2619);
-                break fn__265;
+            if (r3__274.getValue() == 2) {
+                t_2637 = new Down();
+                dir__275 = t_2637;
             }
-            if (slot__270 == 2) {
-                t_2621 = new Point(cx__266, qy__269);
-                t_2622 = new Down();
-                return__79 = new SpawnInfo(t_2621, t_2622);
-                break fn__265;
+            if (r3__274.getValue() == 3) {
+                t_2639 = new Up();
+                dir__275 = t_2639;
             }
-            t_2624 = new Point(cx__266, height__262 - qy__269 - 1);
-            t_2625 = new Up();
-            return__79 = new SpawnInfo(t_2624, t_2625);
+            t_2640 = new Point(x__272, y__273);
+            return__80 = new SpawnInfo(t_2640, dir__275);
         }
-        return return__79;
+        return return__80;
     }
-    static List<Point> collectAllSegments__95(List<PlayerSnake> snakes__271) {
-        int t_2602;
-        PlayerSnake t_2606;
-        int t_2609;
-        List<Point> t_2610;
-        Point t_2611;
-        List<Point> builder__273 = new ArrayList<>();
-        int i__274 = 0;
+    static List<Point> collectAllSegments__96(List<PlayerSnake> snakes__276) {
+        int t_2611;
+        PlayerSnake t_2615;
+        int t_2618;
+        List<Point> t_2619;
+        Point t_2620;
+        List<Point> builder__278 = new ArrayList<>();
+        int i__279 = 0;
         while (true) {
-            t_2602 = snakes__271.size();
-            if (i__274 >= t_2602) {
+            t_2611 = snakes__276.size();
+            if (i__279 >= t_2611) {
                 break;
             }
-            t_2606 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
-            PlayerSnake snake__275 = Core.listGetOr(snakes__271, i__274, t_2606);
-            int j__276 = 0;
+            t_2615 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
+            PlayerSnake snake__280 = Core.listGetOr(snakes__276, i__279, t_2615);
+            int j__281 = 0;
             while (true) {
-                t_2609 = snake__275.getSegments().size();
-                if (j__276 >= t_2609) {
+                t_2618 = snake__280.getSegments().size();
+                if (j__281 >= t_2618) {
                     break;
                 }
-                t_2610 = snake__275.getSegments();
-                t_2611 = new Point(0, 0);
-                Core.listAdd(builder__273, Core.listGetOr(t_2610, j__276, t_2611));
-                j__276 = j__276 + 1;
+                t_2619 = snake__280.getSegments();
+                t_2620 = new Point(0, 0);
+                Core.listAdd(builder__278, Core.listGetOr(t_2619, j__281, t_2620));
+                j__281 = j__281 + 1;
             }
-            i__274 = i__274 + 1;
+            i__279 = i__279 + 1;
         }
-        return List.copyOf(builder__273);
+        return List.copyOf(builder__278);
     }
-    public static MultiSnakeGame newMultiGame(int width__240, int height__241, int numPlayers__242, int seed__243) {
-        Alive t_2591;
-        List<PlayerSnake> snakeBuilder__245 = new ArrayList<>();
-        int currentSeed__246 = seed__243;
-        int i__247 = 0;
-        while (i__247 < numPlayers__242) {
-            SpawnInfo spawn__248 = SnakeGlobal.spawnPosition__94(width__240, height__241, i__247, numPlayers__242);
-            Direction dir__249 = spawn__248.getDirection();
-            int startX__250 = spawn__248.getPoint().getX();
-            int startY__251 = spawn__248.getPoint().getY();
-            Point delta__252 = SnakeGlobal.directionDelta(dir__249);
-            List<Point> segments__253 = List.of(new Point(startX__250, startY__251), new Point(startX__250 - delta__252.getX(), startY__251 - delta__252.getY()), new Point(startX__250 - delta__252.getX() * 2, startY__251 - delta__252.getY() * 2));
-            t_2591 = new Alive();
-            Core.listAdd(snakeBuilder__245, new PlayerSnake(i__247, segments__253, dir__249, 0, t_2591));
-            i__247 = i__247 + 1;
+    public static MultiSnakeGame newMultiGame(int width__241, int height__242, int numPlayers__243, int seed__244) {
+        Alive t_2600;
+        List<PlayerSnake> snakeBuilder__246 = new ArrayList<>();
+        int currentSeed__247 = seed__244;
+        int i__248 = 0;
+        while (i__248 < numPlayers__243) {
+            SpawnInfo spawn__249 = SnakeGlobal.spawnPosition__95(width__241, height__242, i__248, currentSeed__247);
+            Direction dir__250 = spawn__249.getDirection();
+            int startX__251 = spawn__249.getPoint().getX();
+            int startY__252 = spawn__249.getPoint().getY();
+            Point delta__253 = SnakeGlobal.directionDelta(dir__250);
+            List<Point> segments__254 = List.of(new Point(startX__251, startY__252), new Point(startX__251 - delta__253.getX(), startY__252 - delta__253.getY()), new Point(startX__251 - delta__253.getX() * 2, startY__252 - delta__253.getY() * 2));
+            t_2600 = new Alive();
+            Core.listAdd(snakeBuilder__246, new PlayerSnake(i__248, segments__254, dir__250, 0, t_2600));
+            i__248 = i__248 + 1;
         }
-        List<PlayerSnake> t_2594 = List.copyOf(snakeBuilder__245);
-        List<Point> allSegments__254 = SnakeGlobal.collectAllSegments__95(t_2594);
-        FoodPlacement foodResult__255 = SnakeGlobal.placeFood__92(allSegments__254, width__240, height__241, currentSeed__246);
-        List<PlayerSnake> t_2597 = List.copyOf(snakeBuilder__245);
-        Point t_2598 = foodResult__255.getPoint();
-        int t_2599 = foodResult__255.getSeed();
-        return new MultiSnakeGame(width__240, height__241, t_2597, t_2598, t_2599, 0);
+        List<PlayerSnake> t_2603 = List.copyOf(snakeBuilder__246);
+        List<Point> allSegments__255 = SnakeGlobal.collectAllSegments__96(t_2603);
+        FoodPlacement foodResult__256 = SnakeGlobal.placeFood__93(allSegments__255, width__241, height__242, currentSeed__247);
+        List<PlayerSnake> t_2606 = List.copyOf(snakeBuilder__246);
+        Point t_2607 = foodResult__256.getPoint();
+        int t_2608 = foodResult__256.getSeed();
+        return new MultiSnakeGame(width__241, height__242, t_2606, t_2607, t_2608, 0);
     }
-    public static MultiSnakeGame multiTick(MultiSnakeGame game__277, List<Direction> directions__278) {
-        int t_2420;
-        List<PlayerSnake> t_2421;
-        PlayerSnake t_2425;
-        Direction t_2427;
-        int t_2435;
-        List<PlayerSnake> t_2436;
-        PlayerSnake t_2440;
-        List<Direction> t_2444;
-        Right t_2445;
-        int t_2463;
-        List<PlayerSnake> t_2464;
-        PlayerSnake t_2468;
-        Point t_2473;
-        int t_2479;
-        int t_2480;
-        int t_2482;
-        List<Point> t_2483;
-        Point t_2484;
-        int t_2487;
-        List<PlayerSnake> t_2488;
-        PlayerSnake t_2492;
-        int t_2497;
-        List<Point> t_2498;
-        Point t_2499;
-        int t_2502;
-        List<PlayerSnake> t_2503;
-        PlayerSnake t_2507;
-        Point t_2511;
-        int t_2516;
-        Point t_2518;
-        int t_2523;
-        List<PlayerSnake> t_2524;
-        PlayerSnake t_2528;
-        Point t_2541;
-        Direction t_2543;
-        int t_2546;
-        int t_2548;
-        List<Point> t_2551;
-        Point t_2552;
+    public static MultiSnakeGame multiTick(MultiSnakeGame game__282, List<Direction> directions__283) {
+        int t_2429;
+        List<PlayerSnake> t_2430;
+        PlayerSnake t_2434;
+        Direction t_2436;
+        int t_2444;
+        List<PlayerSnake> t_2445;
+        PlayerSnake t_2449;
+        List<Direction> t_2453;
+        Right t_2454;
+        int t_2472;
+        List<PlayerSnake> t_2473;
+        PlayerSnake t_2477;
+        Point t_2482;
+        int t_2488;
+        int t_2489;
+        int t_2491;
+        List<Point> t_2492;
+        Point t_2493;
+        int t_2496;
+        List<PlayerSnake> t_2497;
+        PlayerSnake t_2501;
+        int t_2506;
+        List<Point> t_2507;
+        Point t_2508;
+        int t_2511;
+        List<PlayerSnake> t_2512;
+        PlayerSnake t_2516;
+        Point t_2520;
+        int t_2525;
+        Point t_2527;
+        int t_2532;
+        List<PlayerSnake> t_2533;
+        PlayerSnake t_2537;
+        Point t_2550;
+        Direction t_2552;
         int t_2555;
-        int t_2556;
-        int t_2566;
-        int t_2567;
-        int t_2568;
-        Point t_2570;
-        int t_2571;
-        boolean t_1320;
-        boolean t_1321;
-        boolean t_1322;
-        int t_1392;
-        int t_1400;
-        List<Direction> newDirs__280 = new ArrayList<>();
-        int i__281 = 0;
+        int t_2557;
+        List<Point> t_2560;
+        Point t_2561;
+        int t_2564;
+        int t_2565;
+        int t_2575;
+        int t_2576;
+        int t_2577;
+        Point t_2579;
+        int t_2580;
+        boolean t_1325;
+        boolean t_1326;
+        boolean t_1327;
+        int t_1397;
+        int t_1405;
+        List<Direction> newDirs__285 = new ArrayList<>();
+        int i__286 = 0;
         while (true) {
-            t_2420 = game__277.getSnakes().size();
-            if (i__281 >= t_2420) {
+            t_2429 = game__282.getSnakes().size();
+            if (i__286 >= t_2429) {
                 break;
             }
-            t_2421 = game__277.getSnakes();
-            t_2425 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
-            PlayerSnake snake__282 = Core.listGetOr(t_2421, i__281, t_2425);
-            t_2427 = snake__282.getDirection();
-            Direction inputDir__283 = Core.listGetOr(directions__278, i__281, t_2427);
-            if (SnakeGlobal.isOpposite(snake__282.getDirection(), inputDir__283)) {
-                Core.listAdd(newDirs__280, snake__282.getDirection());
+            t_2430 = game__282.getSnakes();
+            t_2434 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
+            PlayerSnake snake__287 = Core.listGetOr(t_2430, i__286, t_2434);
+            t_2436 = snake__287.getDirection();
+            Direction inputDir__288 = Core.listGetOr(directions__283, i__286, t_2436);
+            if (SnakeGlobal.isOpposite(snake__287.getDirection(), inputDir__288)) {
+                Core.listAdd(newDirs__285, snake__287.getDirection());
             } else {
-                Core.listAdd(newDirs__280, inputDir__283);
+                Core.listAdd(newDirs__285, inputDir__288);
             }
-            i__281 = i__281 + 1;
+            i__286 = i__286 + 1;
         }
-        List<Point> newHeads__284 = new ArrayList<>();
-        int i__285 = 0;
+        List<Point> newHeads__289 = new ArrayList<>();
+        int i__290 = 0;
         while (true) {
-            t_2435 = game__277.getSnakes().size();
-            if (i__285 >= t_2435) {
+            t_2444 = game__282.getSnakes().size();
+            if (i__290 >= t_2444) {
                 break;
             }
-            t_2436 = game__277.getSnakes();
-            t_2440 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
-            PlayerSnake snake__286 = Core.listGetOr(t_2436, i__285, t_2440);
-            if (snake__286.getStatus() instanceof Alive) {
-                t_2444 = List.copyOf(newDirs__280);
-                t_2445 = new Right();
-                Direction dir__287 = Core.listGetOr(t_2444, i__285, t_2445);
-                Point delta__288 = SnakeGlobal.directionDelta(dir__287);
-                Point head__289 = Core.listGetOr(snake__286.getSegments(), 0, new Point(0, 0));
-                Core.listAdd(newHeads__284, new Point(head__289.getX() + delta__288.getX(), head__289.getY() + delta__288.getY()));
+            t_2445 = game__282.getSnakes();
+            t_2449 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
+            PlayerSnake snake__291 = Core.listGetOr(t_2445, i__290, t_2449);
+            if (snake__291.getStatus() instanceof Alive) {
+                t_2453 = List.copyOf(newDirs__285);
+                t_2454 = new Right();
+                Direction dir__292 = Core.listGetOr(t_2453, i__290, t_2454);
+                Point delta__293 = SnakeGlobal.directionDelta(dir__292);
+                Point head__294 = Core.listGetOr(snake__291.getSegments(), 0, new Point(0, 0));
+                Core.listAdd(newHeads__289, new Point(head__294.getX() + delta__293.getX(), head__294.getY() + delta__293.getY()));
             } else {
-                Core.listAdd(newHeads__284, new Point(-1, -1));
+                Core.listAdd(newHeads__289, new Point(-1, -1));
             }
-            i__285 = i__285 + 1;
+            i__290 = i__290 + 1;
         }
-        List<Point> headsList__290 = List.copyOf(newHeads__284);
-        List<Direction> dirsList__291 = List.copyOf(newDirs__280);
-        List<Boolean> aliveBuilder__292 = new ArrayList<>();
-        int i__293 = 0;
+        List<Point> headsList__295 = List.copyOf(newHeads__289);
+        List<Direction> dirsList__296 = List.copyOf(newDirs__285);
+        List<Boolean> aliveBuilder__297 = new ArrayList<>();
+        int i__298 = 0;
         while (true) {
-            t_2463 = game__277.getSnakes().size();
-            if (i__293 >= t_2463) {
+            t_2472 = game__282.getSnakes().size();
+            if (i__298 >= t_2472) {
                 break;
             }
-            t_2464 = game__277.getSnakes();
-            t_2468 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
-            PlayerSnake snake__294 = Core.listGetOr(t_2464, i__293, t_2468);
-            if (!(snake__294.getStatus() instanceof Alive)) {
-                Core.listAdd(aliveBuilder__292, false);
+            t_2473 = game__282.getSnakes();
+            t_2477 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
+            PlayerSnake snake__299 = Core.listGetOr(t_2473, i__298, t_2477);
+            if (!(snake__299.getStatus() instanceof Alive)) {
+                Core.listAdd(aliveBuilder__297, false);
             } else {
-                t_2473 = new Point(-1, -1);
-                Point nh__295 = Core.listGetOr(headsList__290, i__293, t_2473);
-                boolean dead__296 = false;
-                if (nh__295.getX() < 0) {
-                    t_1322 = true;
+                t_2482 = new Point(-1, -1);
+                Point nh__300 = Core.listGetOr(headsList__295, i__298, t_2482);
+                boolean dead__301 = false;
+                if (nh__300.getX() < 0) {
+                    t_1327 = true;
                 } else {
-                    if (nh__295.getX() >= game__277.getWidth()) {
-                        t_1321 = true;
+                    if (nh__300.getX() >= game__282.getWidth()) {
+                        t_1326 = true;
                     } else {
-                        if (nh__295.getY() < 0) {
-                            t_1320 = true;
+                        if (nh__300.getY() < 0) {
+                            t_1325 = true;
                         } else {
-                            t_2479 = nh__295.getY();
-                            t_2480 = game__277.getHeight();
-                            t_1320 = t_2479 >= t_2480;
+                            t_2488 = nh__300.getY();
+                            t_2489 = game__282.getHeight();
+                            t_1325 = t_2488 >= t_2489;
                         }
-                        t_1321 = t_1320;
+                        t_1326 = t_1325;
                     }
-                    t_1322 = t_1321;
+                    t_1327 = t_1326;
                 }
-                if (t_1322) {
-                    dead__296 = true;
+                if (t_1327) {
+                    dead__301 = true;
                 }
-                if (!dead__296) {
-                    int s__297 = 0;
+                if (!dead__301) {
+                    int s__302 = 0;
                     while (true) {
-                        t_2482 = snake__294.getSegments().size();
-                        if (s__297 >= t_2482 - 1) {
+                        t_2491 = snake__299.getSegments().size();
+                        if (s__302 >= t_2491 - 1) {
                             break;
                         }
-                        t_2483 = snake__294.getSegments();
-                        t_2484 = new Point(-2, -2);
-                        if (SnakeGlobal.pointEquals(nh__295, Core.listGetOr(t_2483, s__297, t_2484))) {
-                            dead__296 = true;
+                        t_2492 = snake__299.getSegments();
+                        t_2493 = new Point(-2, -2);
+                        if (SnakeGlobal.pointEquals(nh__300, Core.listGetOr(t_2492, s__302, t_2493))) {
+                            dead__301 = true;
                         }
-                        s__297 = s__297 + 1;
+                        s__302 = s__302 + 1;
                     }
                 }
-                if (!dead__296) {
-                    int j__298 = 0;
+                if (!dead__301) {
+                    int j__303 = 0;
                     while (true) {
-                        t_2487 = game__277.getSnakes().size();
-                        if (j__298 >= t_2487) {
+                        t_2496 = game__282.getSnakes().size();
+                        if (j__303 >= t_2496) {
                             break;
                         }
-                        if (j__298 != i__293) {
-                            t_2488 = game__277.getSnakes();
-                            t_2492 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
-                            PlayerSnake other__299 = Core.listGetOr(t_2488, j__298, t_2492);
-                            if (other__299.getStatus() instanceof Alive) {
-                                int s__300 = 0;
+                        if (j__303 != i__298) {
+                            t_2497 = game__282.getSnakes();
+                            t_2501 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
+                            PlayerSnake other__304 = Core.listGetOr(t_2497, j__303, t_2501);
+                            if (other__304.getStatus() instanceof Alive) {
+                                int s__305 = 0;
                                 while (true) {
-                                    t_2497 = other__299.getSegments().size();
-                                    if (s__300 >= t_2497 - 1) {
+                                    t_2506 = other__304.getSegments().size();
+                                    if (s__305 >= t_2506 - 1) {
                                         break;
                                     }
-                                    t_2498 = other__299.getSegments();
-                                    t_2499 = new Point(-2, -2);
-                                    if (SnakeGlobal.pointEquals(nh__295, Core.listGetOr(t_2498, s__300, t_2499))) {
-                                        dead__296 = true;
+                                    t_2507 = other__304.getSegments();
+                                    t_2508 = new Point(-2, -2);
+                                    if (SnakeGlobal.pointEquals(nh__300, Core.listGetOr(t_2507, s__305, t_2508))) {
+                                        dead__301 = true;
                                     }
-                                    s__300 = s__300 + 1;
+                                    s__305 = s__305 + 1;
                                 }
                             }
                         }
-                        j__298 = j__298 + 1;
+                        j__303 = j__303 + 1;
                     }
                 }
-                if (!dead__296) {
-                    int j__301 = 0;
+                if (!dead__301) {
+                    int j__306 = 0;
                     while (true) {
-                        t_2502 = game__277.getSnakes().size();
-                        if (j__301 >= t_2502) {
+                        t_2511 = game__282.getSnakes().size();
+                        if (j__306 >= t_2511) {
                             break;
                         }
-                        if (j__301 != i__293) {
-                            t_2503 = game__277.getSnakes();
-                            t_2507 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
-                            PlayerSnake otherSnake__302 = Core.listGetOr(t_2503, j__301, t_2507);
-                            if (otherSnake__302.getStatus() instanceof Alive) {
-                                t_2511 = new Point(-3, -3);
-                                Point otherHead__303 = Core.listGetOr(headsList__290, j__301, t_2511);
-                                if (SnakeGlobal.pointEquals(nh__295, otherHead__303)) {
-                                    dead__296 = true;
+                        if (j__306 != i__298) {
+                            t_2512 = game__282.getSnakes();
+                            t_2516 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
+                            PlayerSnake otherSnake__307 = Core.listGetOr(t_2512, j__306, t_2516);
+                            if (otherSnake__307.getStatus() instanceof Alive) {
+                                t_2520 = new Point(-3, -3);
+                                Point otherHead__308 = Core.listGetOr(headsList__295, j__306, t_2520);
+                                if (SnakeGlobal.pointEquals(nh__300, otherHead__308)) {
+                                    dead__301 = true;
                                 }
                             }
                         }
-                        j__301 = j__301 + 1;
+                        j__306 = j__306 + 1;
                     }
                 }
-                Core.listAdd(aliveBuilder__292, !dead__296);
+                Core.listAdd(aliveBuilder__297, !dead__301);
             }
-            i__293 = i__293 + 1;
+            i__298 = i__298 + 1;
         }
-        List<Boolean> aliveList__304 = List.copyOf(aliveBuilder__292);
-        int eaterIndex__305 = -1;
-        int i__306 = 0;
+        List<Boolean> aliveList__309 = List.copyOf(aliveBuilder__297);
+        int eaterIndex__310 = -1;
+        int i__311 = 0;
         while (true) {
-            t_2516 = game__277.getSnakes().size();
-            if (i__306 >= t_2516) {
+            t_2525 = game__282.getSnakes().size();
+            if (i__311 >= t_2525) {
                 break;
             }
-            if (Core.listGetOr(aliveList__304, i__306, false)) {
-                t_2518 = new Point(-1, -1);
-                Point nh__307 = Core.listGetOr(headsList__290, i__306, t_2518);
-                if (SnakeGlobal.pointEquals(nh__307, game__277.getFood())) {
-                    eaterIndex__305 = i__306;
+            if (Core.listGetOr(aliveList__309, i__311, false)) {
+                t_2527 = new Point(-1, -1);
+                Point nh__312 = Core.listGetOr(headsList__295, i__311, t_2527);
+                if (SnakeGlobal.pointEquals(nh__312, game__282.getFood())) {
+                    eaterIndex__310 = i__311;
                 }
             }
-            i__306 = i__306 + 1;
+            i__311 = i__311 + 1;
         }
-        List<PlayerSnake> resultSnakes__308 = new ArrayList<>();
-        int i__309 = 0;
+        List<PlayerSnake> resultSnakes__313 = new ArrayList<>();
+        int i__314 = 0;
         while (true) {
-            t_2523 = game__277.getSnakes().size();
-            if (i__309 >= t_2523) {
+            t_2532 = game__282.getSnakes().size();
+            if (i__314 >= t_2532) {
                 break;
             }
-            t_2524 = game__277.getSnakes();
-            t_2528 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
-            PlayerSnake snake__310 = Core.listGetOr(t_2524, i__309, t_2528);
-            if (!(snake__310.getStatus() instanceof Alive)) {
-                Core.listAdd(resultSnakes__308, snake__310);
-            } else if (!Core.listGetOr(aliveList__304, i__309, false)) {
-                Core.listAdd(resultSnakes__308, new PlayerSnake(snake__310.getId(), snake__310.getSegments(), snake__310.getDirection(), snake__310.getScore(), new Dead()));
+            t_2533 = game__282.getSnakes();
+            t_2537 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
+            PlayerSnake snake__315 = Core.listGetOr(t_2533, i__314, t_2537);
+            if (!(snake__315.getStatus() instanceof Alive)) {
+                Core.listAdd(resultSnakes__313, snake__315);
+            } else if (!Core.listGetOr(aliveList__309, i__314, false)) {
+                Core.listAdd(resultSnakes__313, new PlayerSnake(snake__315.getId(), snake__315.getSegments(), snake__315.getDirection(), snake__315.getScore(), new Dead()));
             } else {
-                t_2541 = new Point(0, 0);
-                Point nh__311 = Core.listGetOr(headsList__290, i__309, t_2541);
-                t_2543 = snake__310.getDirection();
-                Direction dir__312 = Core.listGetOr(dirsList__291, i__309, t_2543);
-                boolean isEating__313 = i__309 == eaterIndex__305;
-                if (isEating__313) {
-                    t_2546 = snake__310.getSegments().size();
-                    t_1392 = t_2546;
+                t_2550 = new Point(0, 0);
+                Point nh__316 = Core.listGetOr(headsList__295, i__314, t_2550);
+                t_2552 = snake__315.getDirection();
+                Direction dir__317 = Core.listGetOr(dirsList__296, i__314, t_2552);
+                boolean isEating__318 = i__314 == eaterIndex__310;
+                if (isEating__318) {
+                    t_2555 = snake__315.getSegments().size();
+                    t_1397 = t_2555;
                 } else {
-                    t_2548 = snake__310.getSegments().size();
-                    t_1392 = t_2548 - 1;
+                    t_2557 = snake__315.getSegments().size();
+                    t_1397 = t_2557 - 1;
                 }
-                int keepLen__314 = t_1392;
-                List<Point> newSegs__315 = new ArrayList<>();
-                Core.listAdd(newSegs__315, nh__311);
-                int s__316 = 0;
-                while (s__316 < keepLen__314) {
-                    t_2551 = snake__310.getSegments();
-                    t_2552 = new Point(0, 0);
-                    Core.listAdd(newSegs__315, Core.listGetOr(t_2551, s__316, t_2552));
-                    s__316 = s__316 + 1;
+                int keepLen__319 = t_1397;
+                List<Point> newSegs__320 = new ArrayList<>();
+                Core.listAdd(newSegs__320, nh__316);
+                int s__321 = 0;
+                while (s__321 < keepLen__319) {
+                    t_2560 = snake__315.getSegments();
+                    t_2561 = new Point(0, 0);
+                    Core.listAdd(newSegs__320, Core.listGetOr(t_2560, s__321, t_2561));
+                    s__321 = s__321 + 1;
                 }
-                if (isEating__313) {
-                    t_2555 = snake__310.getScore();
-                    t_1400 = t_2555 + 1;
+                if (isEating__318) {
+                    t_2564 = snake__315.getScore();
+                    t_1405 = t_2564 + 1;
                 } else {
-                    t_2556 = snake__310.getScore();
-                    t_1400 = t_2556;
+                    t_2565 = snake__315.getScore();
+                    t_1405 = t_2565;
                 }
-                int newScore__317 = t_1400;
-                Core.listAdd(resultSnakes__308, new PlayerSnake(snake__310.getId(), List.copyOf(newSegs__315), dir__312, newScore__317, new Alive()));
+                int newScore__322 = t_1405;
+                Core.listAdd(resultSnakes__313, new PlayerSnake(snake__315.getId(), List.copyOf(newSegs__320), dir__317, newScore__322, new Alive()));
             }
-            i__309 = i__309 + 1;
+            i__314 = i__314 + 1;
         }
-        List<PlayerSnake> resultSnakesList__318 = List.copyOf(resultSnakes__308);
-        Point t_2563 = game__277.getFood();
-        Point newFood__319 = t_2563;
-        int t_2564 = game__277.getRngSeed();
-        int newSeed__320 = t_2564;
-        if (eaterIndex__305 >= 0) {
-            List<Point> allSegs__321 = SnakeGlobal.collectAllSegments__95(resultSnakesList__318);
-            t_2566 = game__277.getWidth();
-            t_2567 = game__277.getHeight();
-            t_2568 = game__277.getRngSeed();
-            FoodPlacement foodResult__322 = SnakeGlobal.placeFood__92(allSegs__321, t_2566, t_2567, t_2568);
-            t_2570 = foodResult__322.getPoint();
-            newFood__319 = t_2570;
-            t_2571 = foodResult__322.getSeed();
-            newSeed__320 = t_2571;
+        List<PlayerSnake> resultSnakesList__323 = List.copyOf(resultSnakes__313);
+        Point t_2572 = game__282.getFood();
+        Point newFood__324 = t_2572;
+        int t_2573 = game__282.getRngSeed();
+        int newSeed__325 = t_2573;
+        if (eaterIndex__310 >= 0) {
+            List<Point> allSegs__326 = SnakeGlobal.collectAllSegments__96(resultSnakesList__323);
+            t_2575 = game__282.getWidth();
+            t_2576 = game__282.getHeight();
+            t_2577 = game__282.getRngSeed();
+            FoodPlacement foodResult__327 = SnakeGlobal.placeFood__93(allSegs__326, t_2575, t_2576, t_2577);
+            t_2579 = foodResult__327.getPoint();
+            newFood__324 = t_2579;
+            t_2580 = foodResult__327.getSeed();
+            newSeed__325 = t_2580;
         }
-        int t_2572 = game__277.getWidth();
-        int t_2573 = game__277.getHeight();
-        int t_2574 = game__277.getTickCount();
-        return new MultiSnakeGame(t_2572, t_2573, resultSnakesList__318, newFood__319, newSeed__320, t_2574 + 1);
+        int t_2581 = game__282.getWidth();
+        int t_2582 = game__282.getHeight();
+        int t_2583 = game__282.getTickCount();
+        return new MultiSnakeGame(t_2581, t_2582, resultSnakesList__323, newFood__324, newSeed__325, t_2583 + 1);
     }
-    public static MultiSnakeGame changePlayerDirection(MultiSnakeGame game__323, int playerId__324, Direction dir__325) {
-        int t_2393;
-        List<PlayerSnake> t_2394;
-        PlayerSnake t_2398;
-        Direction t_2403;
-        int t_2404;
-        List<Point> t_2405;
-        int t_2406;
-        PlayerStatus t_2407;
-        boolean t_1245;
-        boolean t_1246;
-        List<PlayerSnake> newSnakes__327 = new ArrayList<>();
-        int i__328 = 0;
-        while (true) {
-            t_2393 = game__323.getSnakes().size();
-            if (i__328 >= t_2393) {
-                break;
-            }
-            t_2394 = game__323.getSnakes();
-            t_2398 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
-            PlayerSnake snake__329 = Core.listGetOr(t_2394, i__328, t_2398);
-            if (snake__329.getId() == playerId__324) {
-                if (snake__329.getStatus() instanceof Alive) {
-                    t_2403 = snake__329.getDirection();
-                    t_1245 = !SnakeGlobal.isOpposite(t_2403, dir__325);
-                } else {
-                    t_1245 = false;
-                }
-                t_1246 = t_1245;
-            } else {
-                t_1246 = false;
-            }
-            if (t_1246) {
-                t_2404 = snake__329.getId();
-                t_2405 = snake__329.getSegments();
-                t_2406 = snake__329.getScore();
-                t_2407 = snake__329.getStatus();
-                Core.listAdd(newSnakes__327, new PlayerSnake(t_2404, t_2405, dir__325, t_2406, t_2407));
-            } else {
-                Core.listAdd(newSnakes__327, snake__329);
-            }
-            i__328 = i__328 + 1;
-        }
-        return new MultiSnakeGame(game__323.getWidth(), game__323.getHeight(), List.copyOf(newSnakes__327), game__323.getFood(), game__323.getRngSeed(), game__323.getTickCount());
-    }
-    public static boolean isMultiGameOver(MultiSnakeGame game__330) {
-        boolean return__83;
-        int t_2378;
-        List<PlayerSnake> t_2379;
-        PlayerSnake t_2383;
-        int aliveCount__332 = 0;
+    public static MultiSnakeGame changePlayerDirection(MultiSnakeGame game__328, int playerId__329, Direction dir__330) {
+        int t_2402;
+        List<PlayerSnake> t_2403;
+        PlayerSnake t_2407;
+        Direction t_2412;
+        int t_2413;
+        List<Point> t_2414;
+        int t_2415;
+        PlayerStatus t_2416;
+        boolean t_1250;
+        boolean t_1251;
+        List<PlayerSnake> newSnakes__332 = new ArrayList<>();
         int i__333 = 0;
         while (true) {
-            t_2378 = game__330.getSnakes().size();
-            if (i__333 >= t_2378) {
+            t_2402 = game__328.getSnakes().size();
+            if (i__333 >= t_2402) {
                 break;
             }
-            t_2379 = game__330.getSnakes();
-            t_2383 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
-            PlayerSnake snake__334 = Core.listGetOr(t_2379, i__333, t_2383);
-            if (snake__334.getStatus() instanceof Alive) {
-                aliveCount__332 = aliveCount__332 + 1;
+            t_2403 = game__328.getSnakes();
+            t_2407 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
+            PlayerSnake snake__334 = Core.listGetOr(t_2403, i__333, t_2407);
+            if (snake__334.getId() == playerId__329) {
+                if (snake__334.getStatus() instanceof Alive) {
+                    t_2412 = snake__334.getDirection();
+                    t_1250 = !SnakeGlobal.isOpposite(t_2412, dir__330);
+                } else {
+                    t_1250 = false;
+                }
+                t_1251 = t_1250;
+            } else {
+                t_1251 = false;
+            }
+            if (t_1251) {
+                t_2413 = snake__334.getId();
+                t_2414 = snake__334.getSegments();
+                t_2415 = snake__334.getScore();
+                t_2416 = snake__334.getStatus();
+                Core.listAdd(newSnakes__332, new PlayerSnake(t_2413, t_2414, dir__330, t_2415, t_2416));
+            } else {
+                Core.listAdd(newSnakes__332, snake__334);
             }
             i__333 = i__333 + 1;
         }
-        if (game__330.getSnakes().size() == 0) {
-            return__83 = false;
-        } else if (game__330.getSnakes().size() == 1) {
-            return__83 = aliveCount__332 == 0;
-        } else {
-            return__83 = aliveCount__332 <= 1;
-        }
-        return return__83;
+        return new MultiSnakeGame(game__328.getWidth(), game__328.getHeight(), List.copyOf(newSnakes__332), game__328.getFood(), game__328.getRngSeed(), game__328.getTickCount());
     }
-    public static MultiSnakeGame addPlayer(MultiSnakeGame game__335, int seed__336) {
-        int t_2356;
-        List<PlayerSnake> t_2357;
-        PlayerSnake t_2361;
-        int newId__338 = game__335.getSnakes().size();
-        SpawnInfo spawn__339 = SnakeGlobal.spawnPosition__94(game__335.getWidth(), game__335.getHeight(), newId__338, newId__338 + 1);
-        Direction dir__340 = spawn__339.getDirection();
-        Point delta__341 = SnakeGlobal.directionDelta(dir__340);
-        int startX__342 = spawn__339.getPoint().getX();
-        int startY__343 = spawn__339.getPoint().getY();
-        List<Point> segments__344 = List.of(new Point(startX__342, startY__343), new Point(startX__342 - delta__341.getX(), startY__343 - delta__341.getY()), new Point(startX__342 - delta__341.getX() * 2, startY__343 - delta__341.getY() * 2));
-        PlayerSnake newSnake__345 = new PlayerSnake(newId__338, segments__344, dir__340, 0, new Alive());
-        List<PlayerSnake> builder__346 = new ArrayList<>();
-        int i__347 = 0;
+    public static boolean isMultiGameOver(MultiSnakeGame game__335) {
+        boolean return__84;
+        int t_2387;
+        List<PlayerSnake> t_2388;
+        PlayerSnake t_2392;
+        int aliveCount__337 = 0;
+        int i__338 = 0;
         while (true) {
-            t_2356 = game__335.getSnakes().size();
-            if (i__347 >= t_2356) {
+            t_2387 = game__335.getSnakes().size();
+            if (i__338 >= t_2387) {
                 break;
             }
-            t_2357 = game__335.getSnakes();
-            t_2361 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
-            Core.listAdd(builder__346, Core.listGetOr(t_2357, i__347, t_2361));
-            i__347 = i__347 + 1;
+            t_2388 = game__335.getSnakes();
+            t_2392 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
+            PlayerSnake snake__339 = Core.listGetOr(t_2388, i__338, t_2392);
+            if (snake__339.getStatus() instanceof Alive) {
+                aliveCount__337 = aliveCount__337 + 1;
+            }
+            i__338 = i__338 + 1;
         }
-        Core.listAdd(builder__346, newSnake__345);
-        List<PlayerSnake> t_2365 = List.copyOf(builder__346);
-        List<Point> allSegs__348 = SnakeGlobal.collectAllSegments__95(t_2365);
-        int t_2367 = game__335.getWidth();
-        int t_2368 = game__335.getHeight();
-        FoodPlacement foodResult__349 = SnakeGlobal.placeFood__92(allSegs__348, t_2367, t_2368, seed__336);
-        return new MultiSnakeGame(game__335.getWidth(), game__335.getHeight(), List.copyOf(builder__346), foodResult__349.getPoint(), foodResult__349.getSeed(), game__335.getTickCount());
+        if (game__335.getSnakes().size() == 0) {
+            return__84 = false;
+        } else if (game__335.getSnakes().size() == 1) {
+            return__84 = aliveCount__337 == 0;
+        } else {
+            return__84 = aliveCount__337 <= 1;
+        }
+        return return__84;
     }
-    public static MultiSnakeGame removePlayer(MultiSnakeGame game__350, int playerId__351) {
-        int t_2318;
-        List<PlayerSnake> t_2319;
-        PlayerSnake t_2323;
-        List<PlayerSnake> builder__353 = new ArrayList<>();
-        int i__354 = 0;
+    public static MultiSnakeGame addPlayer(MultiSnakeGame game__340, int seed__341) {
+        int t_2365;
+        List<PlayerSnake> t_2366;
+        PlayerSnake t_2370;
+        int newId__343 = game__340.getSnakes().size();
+        SpawnInfo spawn__344 = SnakeGlobal.spawnPosition__95(game__340.getWidth(), game__340.getHeight(), newId__343, seed__341);
+        Direction dir__345 = spawn__344.getDirection();
+        Point delta__346 = SnakeGlobal.directionDelta(dir__345);
+        int startX__347 = spawn__344.getPoint().getX();
+        int startY__348 = spawn__344.getPoint().getY();
+        List<Point> segments__349 = List.of(new Point(startX__347, startY__348), new Point(startX__347 - delta__346.getX(), startY__348 - delta__346.getY()), new Point(startX__347 - delta__346.getX() * 2, startY__348 - delta__346.getY() * 2));
+        PlayerSnake newSnake__350 = new PlayerSnake(newId__343, segments__349, dir__345, 0, new Alive());
+        List<PlayerSnake> builder__351 = new ArrayList<>();
+        int i__352 = 0;
         while (true) {
-            t_2318 = game__350.getSnakes().size();
-            if (i__354 >= t_2318) {
+            t_2365 = game__340.getSnakes().size();
+            if (i__352 >= t_2365) {
                 break;
             }
-            t_2319 = game__350.getSnakes();
-            t_2323 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
-            PlayerSnake snake__355 = Core.listGetOr(t_2319, i__354, t_2323);
-            if (snake__355.getId() != playerId__351) {
-                Core.listAdd(builder__353, snake__355);
+            t_2366 = game__340.getSnakes();
+            t_2370 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
+            Core.listAdd(builder__351, Core.listGetOr(t_2366, i__352, t_2370));
+            i__352 = i__352 + 1;
+        }
+        Core.listAdd(builder__351, newSnake__350);
+        List<PlayerSnake> t_2374 = List.copyOf(builder__351);
+        List<Point> allSegs__353 = SnakeGlobal.collectAllSegments__96(t_2374);
+        int t_2376 = game__340.getWidth();
+        int t_2377 = game__340.getHeight();
+        FoodPlacement foodResult__354 = SnakeGlobal.placeFood__93(allSegs__353, t_2376, t_2377, seed__341);
+        return new MultiSnakeGame(game__340.getWidth(), game__340.getHeight(), List.copyOf(builder__351), foodResult__354.getPoint(), foodResult__354.getSeed(), game__340.getTickCount());
+    }
+    public static MultiSnakeGame removePlayer(MultiSnakeGame game__355, int playerId__356) {
+        int t_2327;
+        List<PlayerSnake> t_2328;
+        PlayerSnake t_2332;
+        List<PlayerSnake> builder__358 = new ArrayList<>();
+        int i__359 = 0;
+        while (true) {
+            t_2327 = game__355.getSnakes().size();
+            if (i__359 >= t_2327) {
+                break;
             }
-            i__354 = i__354 + 1;
+            t_2328 = game__355.getSnakes();
+            t_2332 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
+            PlayerSnake snake__360 = Core.listGetOr(t_2328, i__359, t_2332);
+            if (snake__360.getId() != playerId__356) {
+                Core.listAdd(builder__358, snake__360);
+            }
+            i__359 = i__359 + 1;
         }
-        return new MultiSnakeGame(game__350.getWidth(), game__350.getHeight(), List.copyOf(builder__353), game__350.getFood(), game__350.getRngSeed(), game__350.getTickCount());
+        return new MultiSnakeGame(game__355.getWidth(), game__355.getHeight(), List.copyOf(builder__358), game__355.getFood(), game__355.getRngSeed(), game__355.getTickCount());
     }
-    public static String playerHeadChar(int id__368) {
-        String return__87;
-        if (id__368 == 0) {
-            return__87 = "@";
-        } else if (id__368 == 1) {
-            return__87 = "#";
-        } else if (id__368 == 2) {
-            return__87 = "$";
-        } else if (id__368 == 3) {
-            return__87 = "%";
-        } else {
-            return__87 = "&";
-        }
-        return return__87;
-    }
-    public static String playerBodyChar(int id__370) {
+    public static String playerHeadChar(int id__373) {
         String return__88;
-        if (id__370 == 0) {
-            return__88 = "o";
-        } else if (id__370 == 1) {
-            return__88 = "+";
-        } else if (id__370 == 2) {
-            return__88 = "~";
-        } else if (id__370 == 3) {
-            return__88 = "=";
+        if (id__373 == 0) {
+            return__88 = "@";
+        } else if (id__373 == 1) {
+            return__88 = "#";
+        } else if (id__373 == 2) {
+            return__88 = "$";
+        } else if (id__373 == 3) {
+            return__88 = "%";
         } else {
-            return__88 = ".";
+            return__88 = "&";
         }
         return return__88;
     }
-    static String multiCellChar__96(MultiSnakeGame game__372, Point p__373) {
+    public static String playerBodyChar(int id__375) {
         String return__89;
-        int t_2288;
-        List<PlayerSnake> t_2289;
-        PlayerSnake t_2293;
-        int t_2300;
-        int t_2302;
-        List<PlayerSnake> t_2303;
-        PlayerSnake t_2307;
-        int t_2310;
-        List<Point> t_2311;
-        Point t_2312;
-        Point t_2313;
-        int t_2314;
-        Point t_2315;
-        fn__374: {
-            int i__375 = 0;
-            while (true) {
-                t_2288 = game__372.getSnakes().size();
-                if (i__375 >= t_2288) {
-                    break;
-                }
-                t_2289 = game__372.getSnakes();
-                t_2293 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
-                PlayerSnake snake__376 = Core.listGetOr(t_2289, i__375, t_2293);
-                if (snake__376.getSegments().size() > 0) {
-                    Point head__377 = Core.listGetOr(snake__376.getSegments(), 0, new Point(-1, -1));
-                    if (SnakeGlobal.pointEquals(p__373, head__377)) {
-                        t_2300 = snake__376.getId();
-                        return__89 = SnakeGlobal.playerHeadChar(t_2300);
-                        break fn__374;
-                    }
-                }
-                i__375 = i__375 + 1;
-            }
-            int i__378 = 0;
-            while (true) {
-                t_2302 = game__372.getSnakes().size();
-                if (i__378 >= t_2302) {
-                    break;
-                }
-                t_2303 = game__372.getSnakes();
-                t_2307 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
-                PlayerSnake snake__379 = Core.listGetOr(t_2303, i__378, t_2307);
-                int j__380 = 1;
-                while (true) {
-                    t_2310 = snake__379.getSegments().size();
-                    if (j__380 >= t_2310) {
-                        break;
-                    }
-                    t_2311 = snake__379.getSegments();
-                    t_2312 = new Point(-1, -1);
-                    t_2313 = Core.listGetOr(t_2311, j__380, t_2312);
-                    if (SnakeGlobal.pointEquals(p__373, t_2313)) {
-                        t_2314 = snake__379.getId();
-                        return__89 = SnakeGlobal.playerBodyChar(t_2314);
-                        break fn__374;
-                    }
-                    j__380 = j__380 + 1;
-                }
-                i__378 = i__378 + 1;
-            }
-            t_2315 = game__372.getFood();
-            if (SnakeGlobal.pointEquals(p__373, t_2315)) {
-                return__89 = "*";
-                break fn__374;
-            }
-            return__89 = " ";
+        if (id__375 == 0) {
+            return__89 = "o";
+        } else if (id__375 == 1) {
+            return__89 = "+";
+        } else if (id__375 == 2) {
+            return__89 = "~";
+        } else if (id__375 == 3) {
+            return__89 = "=";
+        } else {
+            return__89 = ".";
         }
         return return__89;
     }
-    public static String multiRender(MultiSnakeGame game__356) {
-        int t_2255;
-        int t_2258;
-        int t_2260;
-        int t_2266;
-        int t_2270;
-        List<PlayerSnake> t_2271;
-        PlayerSnake t_2275;
-        PlayerStatus t_2277;
-        String t_1116;
-        StringBuilder sb__358 = new StringBuilder();
-        sb__358.append("\u001b[2J\u001b[H");
-        sb__358.append("#");
-        int x__359 = 0;
-        while (true) {
-            t_2255 = game__356.getWidth();
-            if (x__359 >= t_2255) {
-                break;
-            }
-            sb__358.append("#");
-            x__359 = x__359 + 1;
-        }
-        sb__358.append("#\r\n");
-        int y__360 = 0;
-        while (true) {
-            t_2258 = game__356.getHeight();
-            if (y__360 >= t_2258) {
-                break;
-            }
-            sb__358.append("#");
-            int x__361 = 0;
+    static String multiCellChar__97(MultiSnakeGame game__377, Point p__378) {
+        String return__90;
+        int t_2297;
+        List<PlayerSnake> t_2298;
+        PlayerSnake t_2302;
+        int t_2309;
+        int t_2311;
+        List<PlayerSnake> t_2312;
+        PlayerSnake t_2316;
+        int t_2319;
+        List<Point> t_2320;
+        Point t_2321;
+        Point t_2322;
+        int t_2323;
+        Point t_2324;
+        fn__379: {
+            int i__380 = 0;
             while (true) {
-                t_2260 = game__356.getWidth();
-                if (x__361 >= t_2260) {
+                t_2297 = game__377.getSnakes().size();
+                if (i__380 >= t_2297) {
                     break;
                 }
-                Point p__362 = new Point(x__361, y__360);
-                sb__358.append(SnakeGlobal.multiCellChar__96(game__356, p__362));
-                x__361 = x__361 + 1;
+                t_2298 = game__377.getSnakes();
+                t_2302 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
+                PlayerSnake snake__381 = Core.listGetOr(t_2298, i__380, t_2302);
+                if (snake__381.getSegments().size() > 0) {
+                    Point head__382 = Core.listGetOr(snake__381.getSegments(), 0, new Point(-1, -1));
+                    if (SnakeGlobal.pointEquals(p__378, head__382)) {
+                        t_2309 = snake__381.getId();
+                        return__90 = SnakeGlobal.playerHeadChar(t_2309);
+                        break fn__379;
+                    }
+                }
+                i__380 = i__380 + 1;
             }
-            sb__358.append("#\r\n");
-            y__360 = y__360 + 1;
-        }
-        sb__358.append("#");
-        int x__363 = 0;
-        while (true) {
-            t_2266 = game__356.getWidth();
-            if (x__363 >= t_2266) {
-                break;
+            int i__383 = 0;
+            while (true) {
+                t_2311 = game__377.getSnakes().size();
+                if (i__383 >= t_2311) {
+                    break;
+                }
+                t_2312 = game__377.getSnakes();
+                t_2316 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
+                PlayerSnake snake__384 = Core.listGetOr(t_2312, i__383, t_2316);
+                int j__385 = 1;
+                while (true) {
+                    t_2319 = snake__384.getSegments().size();
+                    if (j__385 >= t_2319) {
+                        break;
+                    }
+                    t_2320 = snake__384.getSegments();
+                    t_2321 = new Point(-1, -1);
+                    t_2322 = Core.listGetOr(t_2320, j__385, t_2321);
+                    if (SnakeGlobal.pointEquals(p__378, t_2322)) {
+                        t_2323 = snake__384.getId();
+                        return__90 = SnakeGlobal.playerBodyChar(t_2323);
+                        break fn__379;
+                    }
+                    j__385 = j__385 + 1;
+                }
+                i__383 = i__383 + 1;
             }
-            sb__358.append("#");
-            x__363 = x__363 + 1;
-        }
-        sb__358.append("#\r\n");
-        int i__364 = 0;
-        while (true) {
-            t_2270 = game__356.getSnakes().size();
-            if (i__364 >= t_2270) {
-                break;
+            t_2324 = game__377.getFood();
+            if (SnakeGlobal.pointEquals(p__378, t_2324)) {
+                return__90 = "*";
+                break fn__379;
             }
-            t_2271 = game__356.getSnakes();
-            t_2275 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
-            PlayerSnake snake__365 = Core.listGetOr(t_2271, i__364, t_2275);
-            t_2277 = snake__365.getStatus();
-            if (t_2277 instanceof Alive) {
-                t_1116 = "Playing";
-            } else if (t_2277 instanceof Dead) {
-                t_1116 = "DEAD";
-            } else {
-                t_1116 = "";
-            }
-            String statusText__366 = t_1116;
-            String symbol__367 = SnakeGlobal.playerHeadChar(snake__365.getId());
-            sb__358.append("P" + Integer.toString(snake__365.getId()) + " " + symbol__367 + ": " + Integer.toString(snake__365.getScore()) + "  " + statusText__366 + "\r" + "\n");
-            i__364 = i__364 + 1;
-        }
-        return sb__358.toString();
-    }
-    public static String directionToString(Direction dir__381) {
-        String return__90;
-        if (dir__381 instanceof Up) {
-            return__90 = "up";
-        } else if (dir__381 instanceof Down) {
-            return__90 = "down";
-        } else if (dir__381 instanceof Left) {
-            return__90 = "left";
-        } else if (dir__381 instanceof Right) {
-            return__90 = "right";
-        } else {
-            return__90 = "right";
+            return__90 = " ";
         }
         return return__90;
     }
-    public static @Nullable Direction stringToDirection(String s__383) {
-        @Nullable Direction return__91;
-        fn__384: {
-            if (s__383.equals("up")) {
-                return__91 = new Up();
-                break fn__384;
+    public static String multiRender(MultiSnakeGame game__361) {
+        int t_2264;
+        int t_2267;
+        int t_2269;
+        int t_2275;
+        int t_2279;
+        List<PlayerSnake> t_2280;
+        PlayerSnake t_2284;
+        PlayerStatus t_2286;
+        String t_1121;
+        StringBuilder sb__363 = new StringBuilder();
+        sb__363.append("\u001b[2J\u001b[H");
+        sb__363.append("#");
+        int x__364 = 0;
+        while (true) {
+            t_2264 = game__361.getWidth();
+            if (x__364 >= t_2264) {
+                break;
             }
-            if (s__383.equals("down")) {
-                return__91 = new Down();
-                break fn__384;
+            sb__363.append("#");
+            x__364 = x__364 + 1;
+        }
+        sb__363.append("#\r\n");
+        int y__365 = 0;
+        while (true) {
+            t_2267 = game__361.getHeight();
+            if (y__365 >= t_2267) {
+                break;
             }
-            if (s__383.equals("left")) {
-                return__91 = new Left();
-                break fn__384;
+            sb__363.append("#");
+            int x__366 = 0;
+            while (true) {
+                t_2269 = game__361.getWidth();
+                if (x__366 >= t_2269) {
+                    break;
+                }
+                Point p__367 = new Point(x__366, y__365);
+                sb__363.append(SnakeGlobal.multiCellChar__97(game__361, p__367));
+                x__366 = x__366 + 1;
             }
-            if (s__383.equals("right")) {
-                return__91 = new Right();
-                break fn__384;
+            sb__363.append("#\r\n");
+            y__365 = y__365 + 1;
+        }
+        sb__363.append("#");
+        int x__368 = 0;
+        while (true) {
+            t_2275 = game__361.getWidth();
+            if (x__368 >= t_2275) {
+                break;
             }
-            return__91 = null;
+            sb__363.append("#");
+            x__368 = x__368 + 1;
+        }
+        sb__363.append("#\r\n");
+        int i__369 = 0;
+        while (true) {
+            t_2279 = game__361.getSnakes().size();
+            if (i__369 >= t_2279) {
+                break;
+            }
+            t_2280 = game__361.getSnakes();
+            t_2284 = new PlayerSnake(0, List.of(), new Right(), 0, new Dead());
+            PlayerSnake snake__370 = Core.listGetOr(t_2280, i__369, t_2284);
+            t_2286 = snake__370.getStatus();
+            if (t_2286 instanceof Alive) {
+                t_1121 = "Playing";
+            } else if (t_2286 instanceof Dead) {
+                t_1121 = "DEAD";
+            } else {
+                t_1121 = "";
+            }
+            String statusText__371 = t_1121;
+            String symbol__372 = SnakeGlobal.playerHeadChar(snake__370.getId());
+            sb__363.append("P" + Integer.toString(snake__370.getId()) + " " + symbol__372 + ": " + Integer.toString(snake__370.getScore()) + "  " + statusText__371 + "\r" + "\n");
+            i__369 = i__369 + 1;
+        }
+        return sb__363.toString();
+    }
+    public static String directionToString(Direction dir__386) {
+        String return__91;
+        if (dir__386 instanceof Up) {
+            return__91 = "up";
+        } else if (dir__386 instanceof Down) {
+            return__91 = "down";
+        } else if (dir__386 instanceof Left) {
+            return__91 = "left";
+        } else if (dir__386 instanceof Right) {
+            return__91 = "right";
+        } else {
+            return__91 = "right";
         }
         return return__91;
+    }
+    public static @Nullable Direction stringToDirection(String s__388) {
+        @Nullable Direction return__92;
+        fn__389: {
+            if (s__388.equals("up")) {
+                return__92 = new Up();
+                break fn__389;
+            }
+            if (s__388.equals("down")) {
+                return__92 = new Down();
+                break fn__389;
+            }
+            if (s__388.equals("left")) {
+                return__92 = new Left();
+                break fn__389;
+            }
+            if (s__388.equals("right")) {
+                return__92 = new Right();
+                break fn__389;
+            }
+            return__92 = null;
+        }
+        return return__92;
     }
 }
